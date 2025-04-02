@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --calculator-bg: #2d2d2d;
+  --key-bg: #3d3d3d;
+  --key-hover: #4d4d4d;
+  --key-active: #5d5d5d;
+  --display-bg: #1a1a1a;
+  --blue-accent: #007acc;
+  --orange-accent: #ff9500;
+}
+
+body {
+  @apply bg-gray-100 min-h-screen flex items-center justify-center p-4;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.calculator {
+  @apply max-w-md w-full rounded-lg shadow-2xl overflow-hidden;
+  background: var(--calculator-bg);
+  padding: 1rem;
+}
+
+.display-section {
+  @apply mb-4;
+}
+
+.status-bar {
+  @apply flex justify-between text-xs text-gray-400 mb-1 px-2;
+}
+
+.main-display {
+  @apply bg-black text-white text-right text-3xl font-mono p-4 rounded;
+  min-height: 60px;
+}
+
+.register-values {
+  @apply flex justify-between text-sm text-gray-400 mt-1 px-2;
+}
+
+.keypad {
+  @apply grid gap-1;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.key {
+  @apply relative flex flex-col items-center justify-center text-white rounded p-2;
+  background: var(--key-bg);
+  transition: all 0.15s ease;
+  height: 64px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.key:hover {
+  background: var(--key-hover);
+}
+
+.key:active {
+  background: var(--key-active);
+  transform: translateY(1px);
+}
+
+.key-financial {
+  @apply font-bold;
+  color: white;
+  background: var(--blue-accent);
+}
+
+.key-financial:hover {
+  background: color-mix(in srgb, var(--blue-accent) 90%, white);
+}
+
+.key-operator {
+  background: var(--key-bg);
+}
+
+.key-text {
+  @apply text-lg font-semibold;
+}
+
+.key-subtext {
+  @apply text-xs absolute bottom-1;
+  color: var(--orange-accent);
+}
+
+.key-blue-subtext {
+  @apply text-xs absolute top-1;
+  color: var(--blue-accent);
+}
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  body {
+    @apply bg-gray-900;
+  }
+}
+
+/* Calculator Styles */
+.calculator-container {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    max-width: 400px;
+    margin: auto;
+}
+
+.calc-btn {
+    @apply bg-gray-700 text-white py-3 px-2 rounded-lg text-sm font-medium transition-all duration-150;
+    min-height: 48px;
+    position: relative;
+}
+
+.calc-btn:hover {
+    @apply bg-gray-600;
+}
+
+.calc-btn:active {
+    @apply bg-gray-800;
+    transform: scale(0.98);
+}
+
+.calc-btn.financial {
+    @apply bg-blue-600;
+}
+
+.calc-btn.financial:hover {
+    @apply bg-blue-500;
+}
+
+.calc-btn.operator {
+    @apply bg-orange-500;
+}
+
+.calc-btn.operator:hover {
+    @apply bg-orange-400;
+}
+
+.calc-btn.num {
+    @apply bg-gray-600;
+}
+
+.calc-btn.num:hover {
+    @apply bg-gray-500;
+}
+
+.sub {
+    display: block;
+    font-size: 0.65em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 2px;
+}
+
+#mainDisplay {
+    font-family: 'Courier New', monospace;
+    min-height: 48px;
+    line-height: 48px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+    .calculator-container {
+        @apply p-2;
+        width: 100%;
+        height: 100vh;
+        max-width: none;
+        border-radius: 0;
+    }
+    
+    .calc-btn {
+        @apply py-2 px-1;
+        font-size: 0.9em;
+    }
+}
+
+/* Animations */
+@keyframes press {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.calc-btn:active {
+    animation: press 0.2s ease-in-out;
+} 

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10bii Financial Calculator</title>
+    <link href="./css/styles.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/decimal.js/decimal.min.js"></script>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display-section">
+            <div class="status-bar">
+                <span id="mode-indicator"></span>
+                <span>P/YR: 12</span>
+                <span>Degrees</span>
+                <span>M.D.Y</span>
+                <span>Act</span>
+                <span>Ann</span>
+                <span>End Mode</span>
+            </div>
+            <div class="main-display" id="display">0</div>
+            <div class="register-values">
+                <span id="n">0.00</span>
+                <span id="iyr">0.00</span>
+                <span id="pv">0.00</span>
+                <span id="pmt">0.00</span>
+                <span id="fv">0.00</span>
+            </div>
+        </div>
+
+        <div class="keypad">
+            <!-- Row 1 (Financial buttons) -->
+            <button class="key key-financial" data-key="n">
+                <span class="key-blue-subtext" style="color: #003366; font-weight: bold;">Acclnt</span>
+                <span class="key-text">N</span>
+                <span class="key-subtext">xP/YR</span>
+            </button>
+            <button class="key key-financial" data-key="iyr">
+                <span class="key-blue-subtext" style="color: #003366; font-weight: bold;">YTM</span>
+                <span class="key-text">I/YR</span>
+                <span class="key-subtext">NOM%</span>
+            </button>
+            <button class="key key-financial" data-key="pv">
+                <span class="key-blue-subtext" style="color: #003366; font-weight: bold;">PRICE</span>
+                <span class="key-text">PV</span>
+                <span class="key-subtext">EFF%</span>
+            </button>
+            <button class="key key-financial" data-key="pmt">
+                <span class="key-blue-subtext" style="color: #003366; font-weight: bold;">CPN%</span>
+                <span class="key-text">PMT</span>
+                <span class="key-subtext">P/YR</span>
+            </button>
+            <button class="key key-financial" data-key="fv">
+                <span class="key-blue-subtext" style="color: #003366; font-weight: bold;">CALL</span>
+                <span class="key-text">FV</span>
+                <span class="key-subtext">AMORT</span>
+            </button>
+
+            <!-- Row 2 -->
+            <button class="key" data-key="input">
+                <span class="key-blue-subtext">DATE</span>
+                <span class="key-text">INPUT</span>
+                <span class="key-subtext">IRR/YR</span>
+            </button>
+            <button class="key" data-key="mu">
+                <span class="key-blue-subtext">ΔDAYS</span>
+                <span class="key-text">MU</span>
+                <span class="key-subtext">IRR/YR</span>
+            </button>
+            <button class="key" data-key="cst">
+                <span class="key-blue-subtext">SemiAnn</span>
+                <span class="key-text">CST</span>
+                <span class="key-subtext">NPV</span>
+            </button>
+            <button class="key" data-key="prc">
+                <span class="key-blue-subtext">SetDate</span>
+                <span class="key-text">PRC</span>
+                <span class="key-subtext">Beg/End</span>
+            </button>
+            <button class="key" data-key="mar">
+                <span class="key-blue-subtext">MatDate</span>
+                <span class="key-text">MAR</span>
+                <span class="key-subtext">RND</span>
+            </button>
+
+            <!-- Row 3 -->
+            <button class="key" data-key="k">
+                <span class="key-blue-subtext">UNITS</span>
+                <span class="key-text">K</span>
+                <span class="key-subtext">SWAP</span>
+            </button>
+            <button class="key" data-key="percent">
+                <span class="key-blue-subtext">SP</span>
+                <span class="key-text">%</span>
+                <span class="key-subtext">%CHG</span>
+            </button>
+            <button class="key" data-key="cfj">
+                <span class="key-blue-subtext">VC</span>
+                <span class="key-text">CFj</span>
+                <span class="key-subtext">Nj</span>
+            </button>
+            <button class="key" data-key="sum">
+                <span class="key-blue-subtext">FC</span>
+                <span class="key-text">Σ+</span>
+                <span class="key-subtext">Σ-</span>
+            </button>
+            <button class="key" data-key="rnd">
+                <span class="key-blue-subtext">PROFIT</span>
+                <span class="key-text">←</span>
+                <span class="key-subtext">RND</span>
+            </button>
+
+            <!-- Row 4 -->
+            <button class="key" data-key="plusminus">
+                <span class="key-blue-subtext">SL</span>
+                <span class="key-text">+/-</span>
+                <span class="key-subtext">E</span>
+            </button>
+            <button class="key" data-key="rcl">
+                <span class="key-blue-subtext">SOYD</span>
+                <span class="key-text">RCL</span>
+                <span class="key-subtext">STO</span>
+            </button>
+            <button class="key" data-key="mem">
+                <span class="key-blue-subtext">DB</span>
+                <span class="key-text">→M</span>
+                <span class="key-subtext">CSTAT</span>
+            </button>
+            <button class="key" data-key="rm">
+                <span class="key-blue-subtext">HYP</span>
+                <span class="key-text">RM</span>
+                <span class="key-subtext">(</span>
+            </button>
+            <button class="key" data-key="mplus">
+                <span class="key-blue-subtext">INV</span>
+                <span class="key-text">M+</span>
+                <span class="key-subtext">)</span>
+            </button>
+
+            <!-- Row 5 - Numbers on left, operations on right -->
+            <button class="key" data-key="7">
+                <span class="key-blue-subtext">Σx²</span>
+                <span class="key-text">7</span>
+                <span class="key-subtext">x̄,y</span>
+            </button>
+            <button class="key" data-key="8">
+                <span class="key-blue-subtext">Σy²</span>
+                <span class="key-text">8</span>
+                <span class="key-subtext">Sx,Sy</span>
+            </button>
+            <button class="key" data-key="9">
+                <span class="key-blue-subtext">Σxy</span>
+                <span class="key-text">9</span>
+                <span class="key-subtext">σx,σy</span>
+            </button>
+            <button class="key key-operator" data-key="divide">
+                <span class="key-blue-subtext">SIN</span>
+                <span class="key-text">÷</span>
+                <span class="key-subtext">1/x</span>
+            </button>
+            <button class="key key-operator" data-key="multiply">
+                <span class="key-blue-subtext">COS</span>
+                <span class="key-text">×</span>
+                <span class="key-subtext">yx</span>
+            </button>
+            
+            <!-- Row 6 - Numbers on left, operations on right -->
+            <button class="key" data-key="4">
+                <span class="key-blue-subtext">n</span>
+                <span class="key-text">4</span>
+                <span class="key-subtext">r̂,r</span>
+            </button>
+            <button class="key" data-key="5">
+                <span class="key-blue-subtext">Σx</span>
+                <span class="key-text">5</span>
+                <span class="key-subtext">ŷ,m</span>
+            </button>
+            <button class="key" data-key="6">
+                <span class="key-blue-subtext">Σy</span>
+                <span class="key-text">6</span>
+                <span class="key-subtext">x̂w,b</span>
+            </button>
+            <button class="key key-operator" data-key="minus">
+                <span class="key-blue-subtext">TAN</span>
+                <span class="key-text">-</span>
+                <span class="key-subtext">√x</span>
+            </button>
+            <button class="key key-operator" data-key="plus">
+                <span class="key-blue-subtext">Deg/Rad</span>
+                <span class="key-text">+</span>
+                <span class="key-subtext">x²</span>
+            </button>
+            
+            <!-- Row 7 - Numbers on left, decimal on right -->
+            <button class="key" data-key="1">
+                <span class="key-blue-subtext">CMEM</span>
+                <span class="key-text">1</span>
+                <span class="key-subtext">ex</span>
+            </button>
+            <button class="key" data-key="2">
+                <span class="key-blue-subtext">REGR</span>
+                <span class="key-text">2</span>
+                <span class="key-subtext">LN</span>
+            </button>
+            <button class="key" data-key="3">
+                <span class="key-blue-subtext">Z≥P</span>
+                <span class="key-text">3</span>
+                <span class="key-subtext">n!</span>
+            </button>
+            <button class="key decimal" data-key="decimal">
+                <span class="key-blue-subtext">nPr</span>
+                <span class="key-text">.</span>
+                <span class="key-subtext">,/.</span>
+            </button>
+            <button class="key key-operator" data-key="equals">
+                <span class="key-blue-subtext">RAND</span>
+                <span class="key-text">=</span>
+                <span class="key-subtext">DISP</span>
+            </button>
+            
+            <!-- Row 8 - Bottom row with utility buttons -->
+            <button class="key" data-key="0">
+                <span class="key-blue-subtext">π</span>
+                <span class="key-text">0</span>
+            </button>
+            <button class="key" data-key="help">
+                <span class="key-text">HELP</span>
+            </button>
+            <button class="key key-financial" style="background: var(--orange-accent);" data-key="orange">
+                <span class="key-text">ORANGE</span>
+            </button>
+            <button class="key key-financial" style="background: var(--blue-accent);" data-key="blue">
+                <span class="key-text">BLUE</span>
+            </button>
+            <button class="key" data-key="clear">
+                <span class="key-text">CLEAR</span>
+            </button>
+        </div>
+    </div>
+
+    <script type="module" src="./js/calculator.js"></script>
+    <script type="module" src="./js/financial.js"></script>
+</body>
+</html> 
