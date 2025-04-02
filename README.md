@@ -2,6 +2,9 @@
 
 A modern, cross-platform financial calculator. This calculator provides a clean, intuitive interface designed to mimic professional financial calculators used by Wall-Street banking and investment analysts.
 
+## Design
+![image](https://github.com/user-attachments/assets/0cd69c19-5fa6-44ef-9fd1-e1009d84450a)
+
 ## Current Status
 
 The calculator is now fully functional with comprehensive financial and statistical capabilities. Recent updates include:
@@ -106,10 +109,6 @@ financial-calculator/
 - **Orange + 4, 5, 6**: Variance, Regression, Correlation
 - **Blue + 7, 8**: Forecast Y from X, Forecast X from Y
 - **Blue + 9**: Clear statistics
-
-## Design
-![image](https://github.com/user-attachments/assets/0cd69c19-5fa6-44ef-9fd1-e1009d84450a)
-
 
 ## Contributing
 
