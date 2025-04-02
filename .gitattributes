@@ -1,0 +1,27 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# JS files
+*.js linguist-language=JavaScript
+*.js linguist-detectable=true
+
+# CSS files
+*.css linguist-language=CSS
+*.css linguist-detectable=true
+
+# HTML files
+*.html linguist-language=HTML
+*.html linguist-detectable=true
+
+# Documentation
+*.md linguist-documentation
+
+# Exclude files from language statistics
+package-lock.json linguist-generated=true
+package.json linguist-detectable=true
+tailwind.config.js linguist-detectable=true
+postcss.config.js linguist-detectable=true
+vite.config.js linguist-detectable=true
+
+# Node modules (already in .gitignore, but added here for completeness)
+node_modules/* linguist-vendored 
